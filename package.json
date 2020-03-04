@@ -1,6 +1,6 @@
 {
-  "name": "mldangelo.com",
-  "homepage": "https://github.com/mldangelo/personal-site",
+  "name": "piyushdatta.com",
+  "homepage": "https://github.com/PiyushDatta/personal_website/",
   "version": "1.0.1",
   "private": true,
   "scripts": {
@@ -11,7 +11,7 @@
     "test": "./node_modules/mocha/bin/mocha --exit --require @babel/register ./test/test.js",
     "dev": "nodemon server/server.js --ignore app/ --ignore test/ --exec babel-node",
     "parse-routes": "node -r @babel/register parseRoutes.js",
-    "predeploy": "npm run build && cp -r public/* dist/ && cp dist/index.html dist/404.html && npm run parse-routes",
+    "predeploy": "npm run build && cp -r public/* dist/ && cp dist/index.html dist/404.html && npm run parse-routes && cp CNAME dist/",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
