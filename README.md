@@ -6,6 +6,7 @@
 2. `npm install`
 3. `cp sample.env .env`
 4. In .env, change `NODE_ENV=production` to `NODE_ENV=development`
+5. `npm run deploy`
 
 ## Push to production:
 
@@ -14,6 +15,7 @@
 3. `cp sample.env .env`
 4. In .env, change `NODE_ENV=development` to `NODE_ENV=production`
 5. In .env, make sure `BASE_PATH=/personal_website/`
+6. `npm run deploy`
 
 ## Dependencies:
 
