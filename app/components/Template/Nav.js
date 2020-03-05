@@ -21,7 +21,7 @@ const Nav = () => (
 
     <section className="blurb">
       <h2>About</h2>
-      <p>Hi, I&apos;m Piyush. I like building things.</p>
+      <p>Hi, I&apos;m Piyush. I'm a backend software engineer.</p>
       <ul className="actions">
         <li>
           {window.location.pathname !== `${BASE_PATH}/resume` ? (

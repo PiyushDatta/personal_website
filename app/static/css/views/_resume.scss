@@ -88,16 +88,17 @@
 	}
 
 	.degree {
+		text-transform: none;
+		padding-top: 0.3em;
+		margin-bottom: 1em;
+	}
+
+	.school {
+
 		margin-bottom: .1em;
 		text-transform: none;
 		letter-spacing: 0.16em;
 		font-size: .8em;
-	}
-
-	.school {
-		text-transform: none;
-		padding-top: 0.3em;
-		margin-bottom: 1em;
 	}
 }
 
