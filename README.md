@@ -6,7 +6,7 @@
 2. `npm install`
 3. `cp sample.env .env`
 4. In .env, change `NODE_ENV=production` to `NODE_ENV=development`
-5. `npm run deploy`
+5. `npm run dev`
 
 ## Push to production:
 
