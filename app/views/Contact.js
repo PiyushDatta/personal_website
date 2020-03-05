@@ -110,6 +110,13 @@ const Contact = () => {
               https://github.com/PiyushDatta
             </a>
           </p>
+          <br></br>
+          <p>
+            Repository for this site:{" "}
+            <a href="https://github.com/PiyushDatta/personal_website">
+              https://github.com/PiyushDatta/personal_website
+            </a>
+          </p>
           {/* <div
             className="inline-container"
             style={validateText(message) ? {} : { color: 'red' }}
