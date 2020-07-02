@@ -21,9 +21,9 @@ import { skills, categories } from "../data/resume/skills";
 import resumePDF from "../../public/other/piyush_datta_resume.pdf";
 
 const sections = [
-  "Education",
   "Experience",
-  "Projects"
+  "Projects",
+  "Education",
   // 'Skills',
   // 'Courses',
   // 'References',
@@ -42,7 +42,7 @@ const Resume = () => (
 
           <div className="link-container">
             <br></br>
-            {sections.map(sec => (
+            {sections.map((sec) => (
               <h4 key={sec}>
                 <a href={`#${sec.toLowerCase()}`}>{sec}</a>
               </h4>
@@ -50,9 +50,9 @@ const Resume = () => (
           </div>
         </div>
       </header>
-      <Education data={degrees} />
       <Experience data={positions} />
       <Projects data={resumeProjects} />
+      <Education data={degrees} />
       {/* <Skills skills={skills} categories={categories} /> */}
       {/* <Courses data={courses} /> */}
       <References />
