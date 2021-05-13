@@ -1,5 +1,15 @@
 const resumeProjects = [
   {
+    projectname: "TensorFlow – Google Brain Open-source Project",
+    link:
+      "https://www.tensorflow.org/",
+    tech: "C/C++, Python",
+    points: [
+      "Open-source project to help developers create and train machine learning models",
+      "Currently a contributor (labelled on GitHub) working on bug fixes and new feature development",
+    ],
+  },
+  {
     projectname: "Cashmi - Android Application",
     link:
       "https://play.google.com/store/apps/details?id=com.application.cashmi",

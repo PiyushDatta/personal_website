@@ -5,10 +5,9 @@ const positions = [
     link: "https://aws.amazon.com/",
     daterange: "June 2020 – Present",
     points: [
-      "Backend development work with AWS Aurora Database Engine team",
-      "Working on distributed computing to deliver web service APIs for cloud databases",
-      "Developing features to boost performance and reliability of Aurora’s MySQL binary log replication",
-      "Helping create the development tooling to support new builds and features",
+      "Backend development work with AWS Aurora Database Engine team using C/C++",
+      "Developing features to boost performance and reliability of Aurora MySQL’s logical replication",
+      "Part of core Aurora MySQL team working on next major version, Aurora MySQL 8.0",
     ],
   },
   {
