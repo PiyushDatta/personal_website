@@ -2,4 +2,4 @@ My name is Piyush (Pee-u-sh). I'm a self-taught backend software engineer. I hav
 <br><br>
 Current: Software Engineer @ Amazon Web Services - Aurora (MySQL engine team)
 <br><br>
-Year(s) of experience: ~2
+Year(s) of experience: 2
