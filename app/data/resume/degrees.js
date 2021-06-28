@@ -1,7 +1,7 @@
 const degrees = [
   {
     school: "University of Toronto - St. George Campus",
-    degree: "Bachelor of Commerce",
+    degree: "",
     link: "https://www.utoronto.ca/",
     year: "2014-2018",
   },
