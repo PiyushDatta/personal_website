@@ -39,7 +39,7 @@ const Nav = () => (
 
     <section id="footer">
       <ul className="icons">
-        {data.map(s => (
+        {data.map((s) => (
           <li key={s.label}>
             <a href={s.link}>
               <FontAwesomeIcon icon={s.icon} />

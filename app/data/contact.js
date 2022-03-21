@@ -1,5 +1,5 @@
 import faEnvelope from "@fortawesome/fontawesome-free-regular/faEnvelope";
-import faLinkedIn from "@fortawesome/free-brands-svg-icons/faLinkedin";
+import faLinkedIn from "@fortawesome/fontawesome-free-brands/faLinkedin";
 import faGithub from "@fortawesome/fontawesome-free-brands/faGithub";
 // import faFacebook from "@fortawesome/fontawesome-free-brands/faFacebookF";
 // import faInstagram from "@fortawesome/fontawesome-free-brands/faInstagram";
