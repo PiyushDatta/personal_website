@@ -1,13 +1,14 @@
 const positions = [
   {
     company: "Amazon Web Services",
-    position: "Software Development Engineer",
+    position: "Software Development Engineer II",
     link: "https://aws.amazon.com/",
     daterange: "June 2020 – Present",
     points: [
       "Backend development work with AWS Aurora Database Engine team using C/C++",
+      "Currently working on horizontal sharding solution for Aurora, focused on new Aurora MySQL storage engine and distributed query processing",
       "Developing features to boost performance and reliability of Aurora MySQL’s logical replication",
-      "Part of core Aurora MySQL team working on next major version, Aurora MySQL 8.0",
+      "Part of core Aurora MySQL team that worked on recent major version, Aurora MySQL 3 (MySQL 8.0)",
     ],
   },
   {
