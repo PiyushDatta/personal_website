@@ -6,8 +6,8 @@ const positions = [
     daterange: "June 2020 – Present",
     points: [
       "Backend development work with AWS Aurora Database Engine team using C/C++",
-      "Currently working on horizontal sharding solution for Aurora, focused on new Aurora MySQL storage engine and distributed query processing",
-      "Developing features to boost performance and reliability of Aurora MySQL’s logical replication",
+      "Filed a patent as lead engineer in a solution using a RL based AI model to predict optimal database configs",
+      "Working on a horizontally scalable sharding solution for Aurora, focused on creating a distributed storage engine that can handle distributed transactions and queries using protocols, consensus, and IPC mechanisms",
       "Part of core Aurora MySQL team that worked on recent major version, Aurora MySQL 3 (MySQL 8.0)",
     ],
   },
