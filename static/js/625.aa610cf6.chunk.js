@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpiyushdatta_com=self.webpackChunkpiyushdatta_com||[]).push([[625],{625:(a,t,s)=>{a.exports=s.p+"static/media/about.9a9a4c5142ff48138620.md"}}]);
