@@ -17,8 +17,6 @@ import resumeProjects from '../data/resume/resumeprojects';
 
 // import { skills, categories } from '../data/resume/skills';
 
-const { PUBLIC_URL } = process.env; // set automatically from package.json:homepage
-
 // NOTE: sections are displayed in order defined.
 const sections = {
   Experience: () => <Experience data={positions} />,
@@ -39,9 +37,7 @@ const Resume = () => (
         <div className="title">
           <h2>
             <Link to="resume">Resume</Link>&nbsp;&nbsp;
-            <a href={`${PUBLIC_URL}/public/resumes/piyush_datta_resume.pdf`}>
-              (PDF Version)
-            </a>
+            <a href="resumes/piyush_datta_resume.pdf">(PDF Version)</a>
           </h2>
           <div className="link-container">
             {Object.keys(sections).map((sec) => (
