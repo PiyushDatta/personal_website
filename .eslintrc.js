@@ -24,12 +24,12 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     // don't care about line breaks.
     // 'linebreak-style': ['error', os.EOL === '\r\n' ? 'windows' : 'unix'],
-    'no-console': [
-      'error',
-      {
-        allow: ['warn', 'error', 'info'],
-      },
-    ],
+    // 'no-console': [
+    //   'error',
+    //   {
+    //     allow: ['warn', 'error', 'info'],
+    //   },
+    // ],
     'no-underscore-dangle': 0,
     'react/destructuring-assignment': 0,
     'react/function-component-definition': [

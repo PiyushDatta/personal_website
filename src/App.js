@@ -18,6 +18,7 @@ const Projects = lazy(() => import('./pages/Projects'));
 const Resume = lazy(() => import('./pages/Resume'));
 // We don't want to show stats.
 // const Stats = lazy(() => import('./pages/Stats'));
+console.log(PUBLIC_URL);
 
 const App = () => (
   <BrowserRouter basename={PUBLIC_URL}>
