@@ -27,6 +27,8 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+      # domain: piyushdatta.com
+      # url: https://piyushdatta.com
     runs-on: ubuntu-20.04
     timeout-minutes: 10
     steps:
