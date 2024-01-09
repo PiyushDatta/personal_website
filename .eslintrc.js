@@ -24,6 +24,11 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     // don't care about line breaks.
     // 'linebreak-style': ['error', os.EOL === '\r\n' ? 'windows' : 'unix'],
+    // "linebreak-style": [
+    //   2,
+    //   "unix"
+    // ],
+    'no-console': 0,
     // 'no-console': [
     //   'error',
     //   {
