@@ -26,8 +26,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      # domain: piyushdatta.com
-      url: http://piyushdatta.github.io
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-20.04
     timeout-minutes: 10
     steps:
@@ -44,7 +43,6 @@ jobs:
         run: npm run predeploy
         env:
           NODE_ENV: production
-          # PUBLIC_URL: https://piyushdatta.com/personal_website
           # Remove this line if you would like to skip using google analytics
           REACT_APP_GA_TRACKING_ID: UA-68649021-1
       - name: Setup Pages

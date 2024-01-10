@@ -10,15 +10,11 @@ const { PUBLIC_URL } = process.env;
 // which pages are lazy loaded in the future.
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
-// Index should just go to about me page.
-const Index = lazy(() => import('./pages/About'));
-// const Index = lazy(() => import('./pages/Index'));
+const Index = lazy(() => import('./pages/Index'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const Projects = lazy(() => import('./pages/Projects'));
 const Resume = lazy(() => import('./pages/Resume'));
-// We don't want to show stats.
 // const Stats = lazy(() => import('./pages/Stats'));
-console.log(PUBLIC_URL);
 
 const App = () => (
   <BrowserRouter basename={PUBLIC_URL}>

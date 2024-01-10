@@ -1,4 +1,4 @@
-// const os = require('os');
+const os = require('os');
 
 module.exports = {
   env: {
@@ -22,19 +22,13 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 0,
     'jsx-a11y/href-no-hash': 'off',
     'jsx-a11y/no-static-element-interactions': 0,
-    // don't care about line breaks.
-    // 'linebreak-style': ['error', os.EOL === '\r\n' ? 'windows' : 'unix'],
-    // "linebreak-style": [
-    //   2,
-    //   "unix"
-    // ],
-    'no-console': 0,
-    // 'no-console': [
-    //   'error',
-    //   {
-    //     allow: ['warn', 'error', 'info'],
-    //   },
-    // ],
+    'linebreak-style': ['error', os.EOL === '\r\n' ? 'windows' : 'unix'],
+    'no-console': [
+      'error',
+      {
+        allow: ['warn', 'error', 'info'],
+      },
+    ],
     'no-underscore-dangle': 0,
     'react/destructuring-assignment': 0,
     'react/function-component-definition': [
