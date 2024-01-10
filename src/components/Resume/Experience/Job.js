@@ -4,7 +4,9 @@ import dayjs from 'dayjs';
 import Markdown from 'markdown-to-jsx';
 
 const Job = ({
-  data: { name, position, url, startDate, endDate, summary, highlights },
+  data: {
+    name, position, url, startDate, endDate, summary, highlights,
+  },
 }) => (
   <article className="jobs-container">
     <header>
