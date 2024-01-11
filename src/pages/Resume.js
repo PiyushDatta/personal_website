@@ -27,6 +27,15 @@ const sections = {
   References: () => <References />,
 };
 
+const ResumePDF = () => (
+  <a
+    href="/resumes/piyush_datta_resume.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    (PDF Version)
+  </a>
+);
 const Resume = () => (
   <Main title="Resume" description="Piyush Datta's Resume.">
     <article className="post" id="resume">
@@ -34,7 +43,7 @@ const Resume = () => (
         <div className="title">
           <h2>
             <Link to="resume">Resume</Link>&nbsp;&nbsp;
-            <a href="/resumes/piyush_datta_resume.pdf">(PDF Version)</a>
+            <ResumePDF />
           </h2>
           <div className="link-container">
             {Object.keys(sections).map((sec) => (
