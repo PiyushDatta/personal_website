@@ -29,7 +29,7 @@ const sections = {
 
 const ResumePDF = () => (
   <a
-    href="../resumes/piyush_datta_resume.pdf"
+    href="./resumes/piyush_datta_resume.pdf"
     type="application/pdf"
     target="_blank"
     rel="noopener noreferrer"
