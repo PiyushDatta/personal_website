@@ -34,11 +34,7 @@ const Resume = () => (
         <div className="title">
           <h2>
             <Link to="resume">Resume</Link>&nbsp;&nbsp;
-            <a
-              href={`${process.env.PUBLIC_URL}${'/resumes/piyush_datta_resume.pdf'}`}
-            >
-              (PDF Version)
-            </a>
+            <a href="/resumes/piyush_datta_resume.pdf">(PDF Version)</a>
           </h2>
           <div className="link-container">
             {Object.keys(sections).map((sec) => (
