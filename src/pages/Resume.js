@@ -26,10 +26,9 @@ const sections = {
   // Courses: () => <Courses data={courses} />,
   References: () => <References />,
 };
-
 const ResumePDF = () => (
   <a
-    href="./resumes/piyush_datta_resume.pdf"
+    href="https://PiyushDatta.github.io/personal_website/resumes/piyush_datta_resume.pdf"
     type="application/pdf"
     target="_blank"
     rel="noopener noreferrer"
