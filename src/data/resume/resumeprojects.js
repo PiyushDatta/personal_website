@@ -9,6 +9,23 @@ const resumeProjects = [
     ],
   },
   {
+    projectname: 'Two Sigma - AI Competition - Halite 2',
+    link: 'https://halite.io/',
+    tech: 'Python, Tensorflow, Numpy',
+    points: [
+      'Used an artificial neural network to train and teach my bot to beat other bots in a virtual game created by Two Sigma (Ranked top 10% of players in Halite 2)',
+      'Scraped data from google cloud buckets and trained my bot on google cloud virtual machines',
+    ],
+  },
+  {
+    projectname: 'DattaBot – Artificial Intelligence (AI) LLM Bot',
+    link: 'https://github.com/PiyushDatta/DattaBot',
+    tech: 'Python, PyTorch',
+    points: [
+      'Created a transformer LLM model, API, and bot. Uses latest PyTorch features, error and debugging logging, easy model hyperparameters and configurations, and much more.',
+    ],
+  },
+  {
     projectname: 'Cashmi - Android Application',
     link: 'https://play.google.com/store/apps/details?id=com.application.cashmi',
     tech: 'Android, Java, Firebase, Facebook SDK',
@@ -36,15 +53,6 @@ const resumeProjects = [
       'Only open-source GUI to download SEC Edgar public filings from SEC website directly',
       'Optimized code with web scraping to remove the project’s dependency of a SQL database',
       'Code is Serializable and therefore maintains a record of user settings and user’s choice of directory',
-    ],
-  },
-  {
-    projectname: 'Two Sigma - AI Competition - Halite 2',
-    link: 'https://halite.io/',
-    tech: 'Python, Tensorflow, Numpy',
-    points: [
-      'Used an artificial neural network to train and teach my bot to beat other bots in a virtual game created by Two Sigma (Ranked top 10% of players in Halite 2)',
-      'Scraped data from google cloud buckets and trained my bot on google cloud virtual machines',
     ],
   },
   {

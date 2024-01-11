@@ -20,6 +20,7 @@ const Contact = () => (
       </header>
       <div className="email-at">
         <p>Feel free to get in touch.</p>
+        <br />
         <p>
           Email:{' '}
           <a href="mailto:piyushdattaca@gmail.com">piyushdattaca@gmail.com</a>

@@ -17,8 +17,10 @@
     "lint_fix": "eslint --fix .",
     "predeploy": "npm run build && react-snap",
     "start": "react-scripts start",
+    "lint_start": "eslint --fix . && react-scripts start",
     "test": "npx jest",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",

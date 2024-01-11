@@ -11,7 +11,7 @@ import Projects from '../components/Resume/ResumeProjects';
 import References from '../components/Resume/References';
 
 // import courses from '../data/resume/courses';
-import positions from '../data/resume/positions';
+import works from '../data/resume/work';
 import degrees from '../data/resume/degrees';
 import resumeProjects from '../data/resume/resumeprojects';
 
@@ -19,7 +19,7 @@ import resumeProjects from '../data/resume/resumeprojects';
 
 // NOTE: sections are displayed in order defined.
 const sections = {
-  Experience: () => <Experience data={positions} />,
+  Experience: () => <Experience data={works} />,
   Projects: () => <Projects data={resumeProjects} />,
   Education: () => <Education data={degrees} />,
   // Skills: () => <Skills skills={skills} categories={categories} />,
@@ -28,18 +28,13 @@ const sections = {
 };
 
 const Resume = () => (
-  <Main
-    title="Resume"
-    description="Piyush Datta's Resume. Smile Identity, Arthena, Matroid, YC, Skeptical Investments, Stanford ICME, Planet, and Facebook."
-  >
+  <Main title="Resume" description="Piyush Datta's Resume.">
     <article className="post" id="resume">
       <header>
         <div className="title">
           <h2>
             <Link to="resume">Resume</Link>&nbsp;&nbsp;
-            <a href="%PUBLIC_URL%/resumes/piyush_datta_resume.pdf">
-              (PDF Version)
-            </a>
+            <a href="resumes/piyush_datta_resume.pdf">(PDF Version)</a>
           </h2>
           <div className="link-container">
             {Object.keys(sections).map((sec) => (
