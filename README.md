@@ -3,28 +3,28 @@
 ## Run on local dev (default: http://localhost:7999):
 
 1. `cd personal_website`
-2. `npm install`
+2. `bun install`
 3. `cp sample.env .env`
 4. In .env, change `NODE_ENV=production` to `NODE_ENV=development`
-5. `npm lint_start`
+5. `bun run start`
 
 ## Push to production:
 
 1. `cd personal_website`
-2. `npm install`
+2. `bun install`
 3. `cp sample.env .env`
 4. In .env, change `NODE_ENV=development` to `NODE_ENV=production`
 5. Push to github repo as a commit (github-pages.yml is config for github workflow to deploy to github pages)
-6. OR `npm run deploy`
+6. OR `bun run deploy`
 
 ## Formatting code:
 
-`npm run format`
+`bun run format`
 
 ## Lint code:
 
-`npm run lint`
-`npm run lint_fix`
+`bun run lint`
+`bun run lint_fix`
 
 ## Dependencies:
 

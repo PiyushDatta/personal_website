@@ -5,7 +5,14 @@ import Markdown from 'markdown-to-jsx';
 
 const Job = ({
   data: {
-    name, position, url, startDate, endDate, summary, highlights,
+    name,
+    position,
+    url,
+    startDate,
+    endDate,
+    location,
+    summary,
+    highlights,
   },
 }) => (
   <article className="jobs-container">
@@ -15,6 +22,8 @@ const Job = ({
       </h4>
       <p className="daterange">
         {' '}
+        {location}
+        {', '}
         {dayjs(startDate).format('MMMM YYYY')} -{' '}
         {endDate ? dayjs(endDate).format('MMMM YYYY') : 'PRESENT'}
       </p>
@@ -51,6 +60,7 @@ Job.propTypes = {
     url: PropTypes.string.isRequired,
     startDate: PropTypes.string.isRequired,
     endDate: PropTypes.string,
+    location: PropTypes.string,
     summary: PropTypes.string,
     highlights: PropTypes.arrayOf(PropTypes.string.isRequired),
   }).isRequired,

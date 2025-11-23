@@ -22,10 +22,11 @@ const SideBar = () => (
     <section className="blurb">
       <h2>About</h2>
       <p>
-        My name is Piyush (Pee-u-sh). I&apos;m a self-taught backend software
-        engineer. I have a bachelor&apos;s degree from the University of Toronto
-        (graduated May 2018). My interests lie in distributed systems, ML/AI
-        (main focus on reinforcement learning), and cloud computing.
+        My name is Piyush (Pee-u-sh). I&apos;m a self-taught systems software
+        engineer currently living and working in SF Bay Area. I&apos;ve worked on
+        massive scale projects within database kernels and high performance
+        infrastructure systems. My interests lie in distributed systems, ML/AI
+        (main focus on sparse LLM architectures and RL), and cloud computing.
       </p>
       <ul className="actions">
         <li>
