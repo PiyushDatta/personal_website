@@ -3,53 +3,37 @@
  */
 const resumeProjects = [
   {
-    projectname: '1st Place Google – StrongCompute',
-    link: 'https://github.com/PiyushDatta/chess-hackathon/tree/working_branch_march_2025',
-    tech: 'Python, Pytorch, Tensorboard',
+    projectname: '1st Place – Google Technology Prize, Hack for Social Impact 2025',
+    link: 'https://devpost.com/software/doorwai',
+    tech: 'Python, React Native, Node/Express, Google Cloud',
     points: [
-      'Trained a 3M param vision LLM agent from scratch using 8 H100s, flash attention, FSDP, GELU, and AMP',
-      'Won novice champion by having my LLM agent beat other LLM agents at 1on1 chess matches (100 max moves)',
+      'Created a fully functional cross-platform app that acts as an AI assistant for youth facing homelessness.',
+      'Enabled users to chat with the AI assistant via text or speech; the assistant could also place phone calls to agencies on the user’s behalf without using the user’s phone number.',
     ],
   },
   {
-    projectname: '1st Place Novice Champion LLM Chess Hackathon – StrongCompute',
+    projectname: '1st Place – Novice Champion, LLM Chess Hackathon (StrongCompute)',
     link: 'https://github.com/PiyushDatta/chess-hackathon/tree/working_branch_march_2025',
-    tech: 'Python, Pytorch, Tensorboard',
+    tech: 'Python, PyTorch, TensorBoard',
     points: [
-      'Trained a 3M param vision LLM agent from scratch using 8 H100s, flash attention, FSDP, GELU, and AMP',
-      'Won novice champion by having my LLM agent beat other LLM agents at 1on1 chess matches (100 max moves)',
+      'Trained a 3M-parameter vision-LLM agent from scratch using 8xH100s, FlashAttention, FSDP, GELU, and AMP.',
+      'Won Novice Champion by having my LLM agent defeat other LLM agents in 1-on-1 chess matches (100-move max).',
     ],
   },
   {
-    projectname: 'Amazon patent (pending) – AWS Aurora AI/RL based database configuration system',
+    projectname: 'Amazon Patent (Pending) – AWS Aurora AI/RL-Based Database Configuration System',
     link: '',
     tech: '',
     points: [
-      'Lead designer/inventor of a database configuration system that can automatically predict the most optimal database configurations based on customer database workloads, using AI reinforcement learning techniques',
+      'Lead designer and inventor of a database configuration system that automatically predicts optimal database configurations based on customer workloads using AI reinforcement learning techniques.',
     ],
   },
   {
-    projectname: 'TensorFlow – Google Brain Open-source Project',
-    link: 'https://www.tensorflow.org/',
+    projectname: 'Contributor to TensorFlow – Google Brain Open-Source Project',
+    link: 'https://www.tensorflow.org',
     tech: 'C/C++, Python',
     points: [
-      'Contributor for open-source project to help developers create and train machine/deep learning models',
-    ],
-  },
-  {
-    projectname: 'Two Sigma - Artificial Intelligence (AI) Competition - Halite 2',
-    link: 'https://halite.io/',
-    tech: 'Python, TensorFlow, NumPy',
-    points: [
-      'Used an artificial neural network to train and teach my bot to beat other bots in a virtual game created by Two Sigma (Ranked top 10% of players in Halite 2)',
-    ],
-  },
-  {
-    projectname: 'DattaBot – Artificial Intelligence (AI) LLM Bot',
-    link: 'https://github.com/PiyushDatta/DattaBot',
-    tech: 'Python, PyTorch',
-    points: [
-      'Created a transformer LLM model, API, and bot. Uses latest PyTorch features, error and debugging logging, easy model hyperparameters and configurations, and much more.',
+      'Contributed to an open-source project enabling developers to create and train ML models.',
     ],
   },
 ];

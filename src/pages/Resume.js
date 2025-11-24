@@ -14,13 +14,15 @@ import References from '../components/Resume/References';
 import works from '../data/resume/work';
 import degrees from '../data/resume/degrees';
 import resumeProjects from '../data/resume/resumeprojects';
-
+import extraResumeProjects from '../data/resume/extraresumeprojects';
 // import { skills, categories } from '../data/resume/skills';
+
+const allProjects = [...resumeProjects, ...extraResumeProjects];
 
 // NOTE: sections are displayed in order defined.
 const sections = {
   Experience: () => <Experience data={works} />,
-  Projects: () => <Projects data={resumeProjects} />,
+  Projects: () => <Projects data={allProjects} />,
   Education: () => <Education data={degrees} />,
   // Skills: () => <Skills skills={skills} categories={categories} />,
   // Courses: () => <Courses data={courses} />,

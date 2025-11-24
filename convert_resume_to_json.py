@@ -27,7 +27,29 @@ COMPANY_URLS = {
 }
 
 # ==========================================
-# HELPERS
+# HELPERS - Text Utilities
+# ==========================================
+def clean_text(text):
+    """Removes bullet characters and extra whitespace."""
+    # Remove various bullet point characters
+    text = re.sub(r'^[•\-\*\u2022\u2023\u25E6\u2043\u2219\u00B7·]\s*', '', text)
+    return text.strip()
+
+def normalize_whitespace(text):
+    """Normalizes tabs and multiple spaces to single spaces."""
+    text = re.sub(r'\t', ' ', text)
+    text = re.sub(r'\s+', ' ', text)
+    return text.strip()
+
+def escape_js(text):
+    """Escapes single quotes for JS strings and removes tabs."""
+    if not text: 
+        return ""
+    text = normalize_whitespace(text)
+    return text.replace("'", "\\'")
+
+# ==========================================
+# HELPERS - Document Analysis
 # ==========================================
 def get_document_hyperlinks(doc):
     """
@@ -62,20 +84,6 @@ def get_paragraph_link(para, doc_rels):
         
     return ""
 
-def clean_text(text):
-    """Removes bullet characters and extra whitespace."""
-    text = re.sub(r'^[•\-\u2022\u2023\u25E6\u2043\u2219]\s*', '', text)
-    return text.strip()
-
-def escape_js(text):
-    """Escapes single quotes for JS strings and removes tabs."""
-    if not text: return ""
-    # Remove all tabs and normalize whitespace
-    text = re.sub(r'\t', ' ', text)
-    text = re.sub(r'\s+', ' ', text).strip()
-    # Escape single quotes
-    return text.replace("'", "\\'")
-
 def is_italic(run):
     """Check if a run is italic."""
     return run.italic or (run.font.italic if run.font else False)
@@ -84,225 +92,310 @@ def is_bold(run):
     """Check if a run is bold."""
     return run.bold or (run.font.bold if run.font else False)
 
+def has_bold_text(para):
+    """Check if paragraph contains any bold text."""
+    return any(is_bold(run) for run in para.runs)
+
+def has_italic_text(para):
+    """Check if paragraph contains any italic text."""
+    return any(is_italic(run) for run in para.runs)
+
+def extract_italic_text(para):
+    """Extract all italic text from a paragraph."""
+    italic_text = ""
+    for run in para.runs:
+        if is_italic(run):
+            italic_text += run.text
+    return italic_text.strip()
+
+# ==========================================
+# HELPERS - Pattern Matching
+# ==========================================
 def parse_date_range(text):
     """
     Extracts date range from text like 'April 2022 -- Present' or 'June 2020 -- April 2022'
     Returns (start_date, end_date) tuple
     """
-    # Clean tabs and extra whitespace first
-    text = re.sub(r'\t', ' ', text)
-    text = re.sub(r'\s+', ' ', text).strip()
+    text = normalize_whitespace(text)
     
-    date_pattern = r'([A-Za-z]+\s+\d{4})\s*(?:--|-|–)\s*([A-Za-z]+\s+\d{4}|Present)'
-    match = re.search(date_pattern, text)
-    if match:
-        start = match.group(1)
-        end = match.group(2) if match.group(2) != 'Present' else None
-        return start, end
-    return None, None
-
-def extract_position_info(para):
-    """
-    Extracts position title from italic text in paragraph.
-    Returns position title or None.
-    """
-    position = ""
-    for run in para.runs:
-        if is_italic(run):
-            position += run.text
-    return position.strip() if position else None
-
-def is_project_title(text, para):
-    """
-    Determines if a line is a project title based on:
-    1. Contains specific project keywords
-    2. Has bold formatting
-    3. Not a bullet point
-    4. Not just a section header like "Website:"
-    """
-    # Skip header-only lines
-    if text.strip().endswith(':') and len(text.strip()) < 20:
-        return False
-    
-    # Skip bullet points
-    if text.startswith(('•', '-')):
-        return False
-    
-    # Project title indicators
-    project_keywords = [
-        'Hackathon', 'Competition', 'patent', 'TensorFlow', 
-        'Two Sigma', 'DattaBot', 'LLM', 'Open-source Project',
-        'Google Brain', 'StrongCompute'
+    # Try multiple date patterns
+    patterns = [
+        # Year only: 2020 -- 2025 or 2025 -- Present
+        r'(\d{4})\s*(?:--|-|–)\s*(\d{4}|Present)',
+        # Full date: January 2020 -- April 2022
+        r'([A-Za-z]+\s+\d{4})\s*(?:--|-|–)\s*([A-Za-z]+\s+\d{4}|Present)',
     ]
     
-    # Check if text contains project keywords
-    has_keyword = any(keyword in text for keyword in project_keywords)
+    for pattern in patterns:
+        match = re.search(pattern, text)
+        if match:
+            start = match.group(1)
+            end = match.group(2) if match.group(2) != 'Present' else None
+            return start, end
     
-    # Check if paragraph has bold text
-    has_bold = any(is_bold(run) for run in para.runs)
+    return None, None
+
+def is_company_line(text, para):
+    """
+    Determines if a line is a company name based on:
+    1. Matches one of the known company names from COMPANY_URLS
+    2. Has bold formatting
+    3. Contains a location (city, state)
+    4. Not a bullet point
+    """
+    # Normalize text
+    text = normalize_whitespace(text)
     
-    return has_keyword and has_bold
+    # Skip bullets (including middle dot ·)
+    if re.match(r'^[•\-\*\u2022\u2023\u25E6\u2043\u2219\u00B7·]\s', text):
+        return False
+    
+    # Must have bold text
+    if not has_bold_text(para):
+        return False
+    
+    # Must NOT have italic text (positions are italic)
+    if has_italic_text(para):
+        return False
+    
+    # CRITICAL: Must start with a known company name
+    starts_with_known_company = any(
+        text.startswith(company) for company in COMPANY_URLS.keys()
+    )
+    
+    if not starts_with_known_company:
+        return False
+    
+    # Should have a location pattern (City, State or State abbreviation)
+    has_location = re.search(r'[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*,\s*[A-Z]{2}', text)
+    
+    return has_location is not None
+
+def is_position_line(text, para):
+    """
+    Determines if a line contains a position title.
+    Position lines have italic text and typically include dates.
+    They should NOT be bullet points.
+    """
+    # If it's a bullet point, it's not a position line
+    if is_bullet_point(text, para):
+        return False
+    
+    return has_italic_text(para)
+
+def is_project_line(text, para):
+    """
+    Determines if a line is a project title based on:
+    1. Has bold formatting
+    2. Contains project keywords OR has a pattern like "1st Place"
+    3. Not a bullet point
+    """
+    text = normalize_whitespace(text)
+    
+    # Skip bullets (including middle dot ·)
+    if re.match(r'^[•\-\*\u2022\u2023\u25E6\u2043\u2219\u00B7·]\s', text):
+        return False
+    
+    # Skip section headers that end with colon
+    if text.endswith(':') and len(text) < 30:
+        return False
+    
+    # Must have bold text
+    if not has_bold_text(para):
+        return False
+    
+    # Skip if it's one of the known companies (more specific check)
+    if any(text.startswith(company) for company in COMPANY_URLS.keys()):
+        return False
+    
+    # Project indicators
+    project_indicators = [
+        'Place', 'Hackathon', 'Competition', 'Patent', 'Prize',
+        'TensorFlow', 'Contributor', 'Open-source', 'Open-Source',
+        'Google Brain', 'StrongCompute', 'Award', 'Champion', 'Novice',
+        'Winner', 'Finalist'
+    ]
+    
+    return any(indicator in text for indicator in project_indicators)
+
+def is_bullet_point(text, para):
+    """Check if a line is a bullet point."""
+    if para.style.name.startswith('List'):
+        return True
+    # Check for various bullet characters including middle dot (·)
+    return bool(re.match(r'^[•\-\*\u2022\u2023\u25E6\u2043\u2219\u00B7·]\s', text))
 
 # ==========================================
-# PARSER
+# PARSER - Company Extraction
+# ==========================================
+def extract_company_info(text):
+    """
+    Extracts company name and location from a company line.
+    Expected format: "Company Name    City, State" or "Company Name, City, State"
+    """
+    text = normalize_whitespace(text)
+    
+    # Try to match against known companies first
+    for known_company in COMPANY_URLS.keys():
+        if text.startswith(known_company):
+            company_name = known_company
+            remainder = text[len(known_company):].strip()
+            location = remainder.lstrip(',').strip()
+            return company_name, location
+    
+    # Fallback: split by comma or multiple spaces
+    if ',' in text:
+        parts = text.split(',', 1)
+        company_name = parts[0].strip()
+        location = parts[1].strip() if len(parts) > 1 else ""
+    else:
+        parts = re.split(r'\s{2,}', text, 1)
+        company_name = parts[0].strip()
+        location = parts[1].strip() if len(parts) > 1 else ""
+    
+    return company_name, location
+
+def create_work_entry(company_name, location):
+    """Creates a new work experience entry."""
+    return {
+        "name": company_name,
+        "position": "",
+        "url": COMPANY_URLS.get(company_name, ""),
+        "startDate": "",
+        "endDate": None,
+        "location": location,
+        "highlights": []
+    }
+
+# ==========================================
+# PARSER - Position Extraction
+# ==========================================
+def extract_position_and_dates(text, para):
+    """
+    Extracts position title and date range from a position line.
+    Expected format: "Position Title    2020 -- 2025"
+    Returns: (position, start_date, end_date)
+    """
+    text = normalize_whitespace(text)
+    
+    # Extract italic text as position
+    position = extract_italic_text(para)
+    
+    # Extract dates
+    start_date, end_date = parse_date_range(text)
+    
+    return position, start_date, end_date
+
+# ==========================================
+# PARSER - Project Extraction
+# ==========================================
+def extract_project_info(text, para, doc_rels):
+    """
+    Extracts project title and link from a project line.
+    Returns: (title, link)
+    """
+    text = normalize_whitespace(text)
+    
+    # Get link if exists
+    link = get_paragraph_link(para, doc_rels)
+    
+    # Clean title (remove URLs if embedded)
+    title = text.split('http')[0].strip()
+    
+    return title, link
+
+def create_project_entry(title, link):
+    """Creates a new project entry."""
+    return {
+        "projectname": title,
+        "link": link,
+        "tech": "",
+        "points": []
+    }
+
+# ==========================================
+# PARSER - Main Function (Refactored)
 # ==========================================
 def parse_resume(file_path):
+    """
+    Parses a resume document and extracts work experience and projects.
+    """
     doc = Document(file_path)
     rels = get_document_hyperlinks(doc)
     
     work_entries = []
     project_entries = []
     
-    current_section = None
-    current_obj = None
-    in_work_section = False
+    current_section = None  # 'WORK' or 'PROJECT'
+    current_entry = None
     
     for i, para in enumerate(doc.paragraphs):
         text = para.text.strip()
         if not text:
             continue
-
-        # Check if this looks like a company name (bold text with location)
-        is_bold_line = any(is_bold(run) for run in para.runs) and not any(is_italic(run) for run in para.runs)
-        # More flexible location pattern
-        has_location = re.search(r'[,\s\t]+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*[,\s\t]+[A-Z]{2}|[A-Z]{2})(?:\s|$)', text)
         
-        # Detect Work Experience section
-        if is_bold_line and has_location and not text.startswith(('•', '-')):
-            # Skip if this looks like a "Technologies", "University", or "Concepts" line
-            if any(skip_word in text for skip_word in ['Technologies', 'Concepts', 'University']):
-                continue
-                
-            # This is likely a company name
-            if current_obj:
-                if current_section == 'WORK': 
-                    work_entries.append(current_obj)
-                elif current_section == 'PROJECT': 
-                    project_entries.append(current_obj)
+        # Check what type of line this is
+        if is_company_line(text, para):
+            # Save previous entry
+            current_entry = save_current_entry(
+                current_entry, current_section, work_entries, project_entries
+            )
             
+            # Start new work entry
             current_section = 'WORK'
-            in_work_section = True
+            company_name, location = extract_company_info(text)
+            current_entry = create_work_entry(company_name, location)
             
-            # Extract company name and location
-            # First normalize whitespace (tabs to spaces)
-            cleaned_text = re.sub(r'\t+', ' ', text)
-            cleaned_text = re.sub(r'\s+', ' ', cleaned_text).strip()
+        elif is_position_line(text, para) and current_section == 'WORK':
+            # Extract position and dates
+            position, start_date, end_date = extract_position_and_dates(text, para)
+            if current_entry and position:
+                # Only update position if it's not already set (avoid overwriting)
+                if not current_entry['position']:
+                    current_entry['position'] = position
+                if start_date and not current_entry['startDate']:
+                    current_entry['startDate'] = start_date
+                    current_entry['endDate'] = end_date
             
-            # Try to match against known company names first
-            company_name = ""
-            location = ""
+        elif is_project_line(text, para):
+            # Save previous entry
+            current_entry = save_current_entry(
+                current_entry, current_section, work_entries, project_entries
+            )
             
-            for known_company in COMPANY_URLS.keys():
-                if cleaned_text.startswith(known_company):
-                    company_name = known_company
-                    # Everything after the company name is the location
-                    remainder = cleaned_text[len(known_company):].strip()
-                    # Remove leading comma or whitespace
-                    location = remainder.lstrip(',').strip()
-                    break
-            
-            # If no match, fall back to splitting by comma or multiple spaces
-            if not company_name:
-                if ',' in cleaned_text:
-                    parts = cleaned_text.split(',', 1)
-                    company_name = parts[0].strip()
-                    if len(parts) > 1:
-                        location = parts[1].strip()
-                else:
-                    # Split by 2+ spaces
-                    parts = re.split(r'\s{2,}', cleaned_text, 1)
-                    company_name = parts[0].strip() if parts else cleaned_text.strip()
-                    if len(parts) > 1:
-                        location = parts[1].strip()
-            
-            current_obj = {
-                "name": company_name,
-                "position": "",
-                "url": COMPANY_URLS.get(company_name, ""),
-                "startDate": "",
-                "endDate": None,
-                "location": location,
-                "highlights": []
-            }
-            continue
-        
-        # Check for position title (italic text) in work section
-        if current_section == 'WORK' and current_obj:
-            position = extract_position_info(para)
-            if position:
-                # Check if dates are on same line
-                start, end = parse_date_range(text)
-                if start:
-                    current_obj['position'] = position
-                    current_obj['startDate'] = start
-                    current_obj['endDate'] = end
-                else:
-                    current_obj['position'] = position
-                continue
-            
-            # Check for date range on its own line
-            start, end = parse_date_range(text)
-            if start and current_obj['startDate'] == "":
-                current_obj['startDate'] = start
-                current_obj['endDate'] = end
-                continue
-        
-        # Detect project titles
-        if is_project_title(text, para):
-            # Save previous object
-            if current_obj:
-                if current_section == 'WORK': 
-                    work_entries.append(current_obj)
-                elif current_section == 'PROJECT': 
-                    project_entries.append(current_obj)
-            
+            # Start new project entry
             current_section = 'PROJECT'
-            in_work_section = False
+            title, link = extract_project_info(text, para, rels)
+            current_entry = create_project_entry(title, link)
             
-            # Extract link
-            link = get_paragraph_link(para, rels)
-            
-            # Clean title (remove link text if embedded)
-            title = text.split('http')[0].strip()
-            
-            current_obj = {
-                "projectname": title,
-                "link": link,
-                "tech": "",
-                "points": []
-            }
-            continue
-        
-        # Content parsing for current section
-        if current_obj:
-            is_list_style = para.style.name.startswith('List')
-            is_visual_bullet = text.startswith('•') or text.startswith('-')
-            
-            if is_list_style or is_visual_bullet:
+        elif is_bullet_point(text, para):
+            # Add to current entry
+            if current_entry:
                 clean_point = clean_text(text)
                 if current_section == 'WORK':
-                    current_obj['highlights'].append(clean_point)
+                    current_entry['highlights'].append(clean_point)
                 elif current_section == 'PROJECT':
-                    current_obj['points'].append(clean_point)
-            
-            # Tech stack detection for projects (italic text that's not a bullet)
-            elif current_section == 'PROJECT' and current_obj['tech'] == "":
-                tech_text = ""
-                for run in para.runs:
-                    if is_italic(run):
-                        tech_text += run.text
-                
-                if tech_text.strip():
-                    current_obj['tech'] = tech_text.strip()
+                    current_entry['points'].append(clean_point)
+        
+        elif current_section == 'PROJECT' and current_entry:
+            # Check for tech stack (italic text that's not a bullet)
+            tech_text = extract_italic_text(para)
+            if tech_text and not current_entry['tech']:
+                current_entry['tech'] = tech_text
     
-    # Append final object
-    if current_obj:
-        if current_section == 'WORK': 
-            work_entries.append(current_obj)
-        elif current_section == 'PROJECT': 
-            project_entries.append(current_obj)
-
+    # Save final entry
+    save_current_entry(current_entry, current_section, work_entries, project_entries)
+    
     return work_entries, project_entries
+
+def save_current_entry(entry, section, work_entries, project_entries):
+    """Saves the current entry to the appropriate list."""
+    if entry:
+        if section == 'WORK':
+            work_entries.append(entry)
+        elif section == 'PROJECT':
+            project_entries.append(entry)
+    return None
 
 # ==========================================
 # JS GENERATORS
