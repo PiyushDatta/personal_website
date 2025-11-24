@@ -18,7 +18,7 @@
     "predeploy": "bun run gen_resume && bun run lint_fix && bun run lint_all",
     "build": "rimraf ./build && react-scripts build",
     "start": "react-scripts start",
-    "deploy": "gh-pages -d build",
+    "deploy": "bun run build && gh-pages -d build",
     "analyze": "bun run build && source-map-explorer build/static/js/*.chunk.js",
     "lint": "eslint \"**/*.js\"",
     "lint_fix": "eslint --fix .",
