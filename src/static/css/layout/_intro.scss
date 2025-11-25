@@ -14,17 +14,13 @@
     overflow: hidden;
     position: relative;
     width: 220px;
-    height: 220px;
+    height: 278px;
     border-radius: 50%;
     img {
-      // width: 10em;
-      // border-radius: 50%;
-      // display: block;
-      display: inline;
-      margin: 0 auto;
-      // margin-left: -3%; /* centers the image */
-      height: 100%;
+      height: 120%; // zoom a bit
       width: auto;
+      object-fit: cover;
+      display: block;
     }
   }
 
