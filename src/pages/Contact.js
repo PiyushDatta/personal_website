@@ -27,8 +27,8 @@ const Contact = () => (
         </p>
         <p>
           Linkedin:{' '}
-          <a href="https://ca.linkedin.com/in/piyushdatta">
-            https://ca.linkedin.com/in/piyushdatta
+          <a href="https://www.linkedin.com/in/piyushdatta">
+            https://www.linkedin.com/in/piyushdatta
           </a>
         </p>
         <p>

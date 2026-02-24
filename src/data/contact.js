@@ -15,7 +15,7 @@ const data = [
     icon: faEnvelope,
   },
   {
-    link: 'https://ca.linkedin.com/in/piyushdatta',
+    link: 'https://www.linkedin.com/in/piyushdatta',
     label: 'LinkedIn',
     icon: faLinkedinIn,
   },
