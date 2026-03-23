@@ -3,7 +3,8 @@
  */
 const resumeProjects = [
   {
-    projectname: '1st Place – Google Technology Prize, Hack for Social Impact 2025',
+    projectname:
+      '1st Place – Google Technology Prize, Hack for Social Impact 2025',
     link: 'https://devpost.com/software/doorwai',
     tech: 'Python, React Native, Node/Express, Google Cloud',
     points: [
@@ -12,7 +13,8 @@ const resumeProjects = [
     ],
   },
   {
-    projectname: '1st Place – Novice Champion, LLM Chess Hackathon (StrongCompute)',
+    projectname:
+      '1st Place – Novice Champion, LLM Chess Hackathon (StrongCompute)',
     link: 'https://github.com/PiyushDatta/chess-hackathon/tree/working_branch_march_2025',
     tech: 'Python, PyTorch, TensorBoard',
     points: [
@@ -21,7 +23,8 @@ const resumeProjects = [
     ],
   },
   {
-    projectname: 'Amazon Patent (Pending) – AWS Aurora AI/RL-Based Database Configuration System',
+    projectname:
+      'Amazon Patent (Pending) – AWS Aurora AI/RL-Based Database Configuration System',
     link: '',
     tech: '',
     points: [

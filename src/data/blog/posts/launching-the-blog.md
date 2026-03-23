@@ -1,27 +1,19 @@
-# Launching the blog
-
-This site now has a dedicated blog section so longer writing does not need to live inside the resume or about page.
-
-## Why markdown
-
-Markdown keeps the workflow simple:
-
-- write in plain text
-- version everything in git
-- review diffs cleanly
-- publish through the same deploy flow as the rest of the site
-
-That is the right tradeoff for a personal site with a single author.
-
 ## What I plan to write here
 
-I want this section to hold notes that are too detailed for a short project bullet:
+This blog is just about what I'm doing at any point in life. Topics may vary. Its written in markdown.
 
-- engineering writeups
-- system design notes
-- ML and infrastructure experiments
-- career and learning retrospectives
+I'm currently living in San Francisco and working as a software engineer. Really loving
+the weather here, and the people are cool too!
 
-## Comments
+Hopefully I post more things about the software I'm working on, my thoughts on life, and maybe even
+some silly personal updates about my life. Currently looking into dabbling in photography, finding a good pool (billiards) bar in the city, and enjoying more of the great parks that SF has to offer.
+
+Feel free to reach out:
+
+[IG - https://www.instagram.com/piyush_says/?hl=en](https://www.instagram.com/piyush_says/?hl=en)
+
+[Twitter/X - https://x.com/piyush_says](https://x.com/piyush_says)
+
+### Comments
 
 Each post can render a `giscus` thread underneath it. The content stays in markdown, while discussion lives in GitHub Discussions.

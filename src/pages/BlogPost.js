@@ -23,9 +23,10 @@ const BlogPost = () => {
   const readingTime = estimateReadingTime(wordCount);
   const currentPostIndex = posts.findIndex((entry) => entry.slug === slug);
   const nextPost = currentPostIndex > 0 ? posts[currentPostIndex - 1] : null;
+  const description = post.summary || `${post.title} by Piyush Datta.`;
 
   return (
-    <Main title={post.title} description={post.summary}>
+    <Main title={post.title} description={description}>
       <article className="post markdown blog-post" id={post.slug}>
         <header>
           <div className="title">
@@ -35,13 +36,14 @@ const BlogPost = () => {
             <h2>
               <Link to={`/blog/${post.slug}`}>{post.title}</Link>
             </h2>
-            <p>{post.summary}</p>
+            {post.summary ? <p>{post.summary}</p> : null}
           </div>
           <div className="meta">
             <time className="published" dateTime={post.date}>
               {dayjs(post.date).format('MMMM D, YYYY')}
             </time>
             <span>{wordCount} words</span>
+            <br />
             <span>{readingTime} min read</span>
           </div>
         </header>

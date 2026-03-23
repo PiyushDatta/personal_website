@@ -19,8 +19,8 @@ const giscusConfig = {
   theme: REACT_APP_GISCUS_THEME || 'light',
 };
 
-const isPrerendering = typeof navigator !== 'undefined'
-  && navigator.userAgent === 'ReactSnap';
+const isPrerendering =
+  typeof navigator !== 'undefined' && navigator.userAgent === 'ReactSnap';
 
 const isConfigured = [
   giscusConfig.repo,

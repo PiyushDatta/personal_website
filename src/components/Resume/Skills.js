@@ -51,14 +51,15 @@ const Skills = ({ skills, categories }) => {
       ));
   };
 
-  const getButtons = () => Object.keys(buttons).map((key) => (
-    <CategoryButton
-      label={key}
-      key={key}
-      active={buttons}
-      handleClick={handleChildClick}
-    />
-  ));
+  const getButtons = () =>
+    Object.keys(buttons).map((key) => (
+      <CategoryButton
+        label={key}
+        key={key}
+        active={buttons}
+        handleClick={handleChildClick}
+      />
+    ));
 
   return (
     <div className="skills">

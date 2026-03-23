@@ -13,7 +13,10 @@ const Blog = () => (
           <h2>
             <Link to="/blog">Blog</Link>
           </h2>
-          <p>Longer-form writing, notes, and experiments.</p>
+          <p>
+            My blog on the stuff I&apos;m working on and maybe some personal
+            stuff here and there :)
+          </p>
         </div>
       </header>
 
@@ -25,7 +28,7 @@ const Blog = () => (
                 <h3>
                   <Link to={`/blog/${post.slug}`}>{post.title}</Link>
                 </h3>
-                <p>{post.summary}</p>
+                {post.summary ? <p>{post.summary}</p> : null}
               </div>
               <p className="blog-card-date">
                 {dayjs(post.date).format('MMMM D, YYYY')}
