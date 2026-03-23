@@ -24,7 +24,7 @@
     "lint": "eslint \"**/*.js\"",
     "lint_fix": "cross-env BROWSERSLIST_IGNORE_OLD_DATA=1 eslint --fix .",
     "before_commit": "bun run format && bun run lint_fix && bun run build",
-    "test": "npx jest",
+    "test": "cross-env CI=true react-scripts test --watchAll=false --runInBand",
     "format": "prettier --write ."
   },
   "dependencies": {

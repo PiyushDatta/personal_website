@@ -33,14 +33,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-          cache: 'npm'
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
       - name: Install
-        run: npm ci
+        run: bun install --frozen-lockfile
       - name: Build and render
-        run: npm run predeploy
+        run: bun run predeploy
         env:
           NODE_ENV: production
           # Remove this line if you would like to skip using google analytics
