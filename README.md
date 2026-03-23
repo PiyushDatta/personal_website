@@ -29,6 +29,8 @@
 ## Dependencies:
 
 - node >= 16
+- python 3.12
+- `python-docx` via `pip install -r requirements.txt`
 - Recommend nvm for managing node versions
 
 ## Other info
