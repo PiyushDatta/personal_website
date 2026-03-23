@@ -38,4 +38,12 @@
 - Github pages: https://piyushdatta.github.io/
 - Built with React, React-Router, Express, and Webpack
 
+## Blog content
+
+- Blog posts live in `src/data/blog/posts/`
+- Post metadata and slugs live in `src/data/blog/posts.js`
+- Comments on blog posts are powered by `giscus`
+- Comments default to this repo's GitHub Discussions `Announcements` category
+- `REACT_APP_GISCUS_*` variables in `.env` can override the default config
+
 ### Special thanks to Michael D'Angelo (https://github.com/mldangelo) for opensourcing the code for this website and letting anyone use it. The repo for most of this code is at: https://github.com/mldangelo/personal-site

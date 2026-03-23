@@ -11,12 +11,8 @@ import App from '../App';
 
 describe('renders the app', () => {
   // mocks the fetch API used on the stats page and the about page.
-  const jsonMock = jest.fn(() => Promise.resolve({}));
   const textMock = jest.fn(() => Promise.resolve(''));
-  global.fetch = jest.fn(() => Promise.resolve({
-    json: jsonMock,
-    text: textMock,
-  }));
+  global.fetch = jest.fn(() => Promise.resolve({ text: textMock }));
   // mocks the scrollTo API used when navigating to a new page.
   window.scrollTo = jest.fn();
 
@@ -45,10 +41,8 @@ describe('renders the app', () => {
   });
 
   it('can navigate to /about', async () => {
-    expect.assertions(7);
-    const aboutLink = document.querySelector(
-      '#header > nav > ul > li:nth-child(1) > a',
-    );
+    expect.assertions(4);
+    const aboutLink = document.querySelector('a[href="/about"]');
     expect(aboutLink).toBeInTheDocument();
     await act(async () => {
       await aboutLink.click();
@@ -56,63 +50,56 @@ describe('renders the app', () => {
     expect(document.title).toContain('About |');
     expect(window.location.pathname).toBe('/about');
     expect(window.scrollTo).toHaveBeenNthCalledWith(1, 0, 0);
-    expect(global.fetch).toHaveBeenCalledTimes(2);
-    expect(jsonMock).toHaveBeenCalledTimes(0);
-    expect(textMock).toHaveBeenCalledTimes(2);
+  });
+
+  it('can navigate to /blog', async () => {
+    expect.assertions(3);
+    const blogLink = document.querySelector('a[href="/blog"]');
+    expect(blogLink).toBeInTheDocument();
+    await act(async () => {
+      await blogLink.click();
+    });
+    expect(document.title).toContain('Blog |');
+    expect(window.location.pathname).toBe('/blog');
+  });
+
+  it('can navigate to /blog/:slug', async () => {
+    expect.assertions(4);
+    const blogLink = document.querySelector('a[href="/blog"]');
+    expect(blogLink).toBeInTheDocument();
+    await act(async () => {
+      await blogLink.click();
+    });
+    const postLink = document.querySelector(
+      'a[href="/blog/launching-the-blog"]',
+    );
+    expect(postLink).toBeInTheDocument();
+    await act(async () => {
+      await postLink.click();
+    });
+    expect(document.title).toContain('Launching the blog |');
+    expect(window.location.pathname).toBe('/blog/launching-the-blog');
   });
 
   it('can navigate to /resume', async () => {
     expect.assertions(3);
-    const contactLink = document.querySelector(
-      '#header > nav > ul > li:nth-child(2) > a',
-    );
-    expect(contactLink).toBeInTheDocument();
+    const resumeLink = document.querySelector('a[href="/resume"]');
+    expect(resumeLink).toBeInTheDocument();
     await act(async () => {
-      await contactLink.click();
+      await resumeLink.click();
     });
     expect(document.title).toContain('Resume |');
     expect(window.location.pathname).toBe('/resume');
   });
 
-  it('can navigate to /projects', async () => {
+  it('can navigate to /contact', async () => {
     expect.assertions(3);
-    const contactLink = document.querySelector(
-      '#header > nav > ul > li:nth-child(3) > a',
-    );
+    const contactLink = document.querySelector('a[href="/contact"]');
     expect(contactLink).toBeInTheDocument();
     await act(async () => {
       await contactLink.click();
     });
-    expect(document.title).toContain('Projects |');
-    expect(window.location.pathname).toBe('/projects');
-  });
-
-  it('can navigate to /stats', async () => {
-    expect.assertions(0);
-    // expect.assertions(5);
-    // const contactLink = document.querySelector(
-    //   '#header > nav > ul > li:nth-child(4) > a',
-    // );
-    // expect(contactLink).toBeInTheDocument();
-    // await act(async () => {
-    //   await contactLink.click();
-    // });
-    // expect(document.title).toContain('Stats |');
-    // expect(window.location.pathname).toBe('/stats');
-    // expect(global.fetch).toHaveBeenCalledTimes(1);
-    // expect(jsonMock).toHaveBeenCalledTimes(1);
-  });
-
-  it('can navigate to /contact', async () => {
-    expect.assertions(0);
-    // const contactLink = document.querySelector(
-    //   '#header > nav > ul > li:nth-child(5) > a',
-    // );
-    // expect(contactLink).toBeInTheDocument();
-    // await act(async () => {
-    //   await contactLink.click();
-    // });
-    // expect(document.title).toContain('Contact |');
-    // expect(window.location.pathname).toBe('/contact');
+    expect(document.title).toContain('Contact |');
+    expect(window.location.pathname).toBe('/contact');
   });
 });

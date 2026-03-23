@@ -44,7 +44,7 @@ const Resume = () => (
       <header>
         <div className="title">
           <h2>
-            <Link to="resume">Resume</Link>&nbsp;&nbsp;
+            <Link to="/resume">Resume</Link>&nbsp;&nbsp;
             <ResumePDF />
           </h2>
           <div className="link-container">

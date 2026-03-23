@@ -1,24 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Markdown from 'markdown-to-jsx';
 
 import Main from '../layouts/Main';
+import useMarkdown from '../hooks/useMarkdown';
+import { countWords } from '../utils/markdown';
+
+const loadAboutMarkdown = () => import('../data/about.md');
 
 const About = () => {
-  const [markdown, setMarkdown] = useState('');
-
-  useEffect(() => {
-    import('../data/about.md').then((res) => {
-      fetch(res.default)
-        .then((r) => r.text())
-        .then(setMarkdown);
-    });
-  });
-
-  const count = markdown
-    .split(/\s+/)
-    .map((s) => s.replace(/\W/g, ''))
-    .filter((s) => s.length).length;
+  const { markdown } = useMarkdown(loadAboutMarkdown);
+  const count = countWords(markdown);
 
   return (
     <Main title="About" description="Learn about Piyush Datta">
