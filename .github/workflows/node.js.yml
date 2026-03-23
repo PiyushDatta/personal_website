@@ -29,7 +29,7 @@ jobs:
       - name: Lint
         run: bun run lint
 
-  build:
+  test:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
@@ -51,22 +51,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-          cache: 'pip'
-          cache-dependency-path: requirements.txt
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
       - run: bun install --frozen-lockfile
-      - name: Install Python dependencies
-        run: python -m pip install -r requirements.txt
-      - name: Build and Statically Render
-        run: bun run predeploy
-        env:
-          NODE_ENV: development
       - name: Test
         run: bun run test
         env:
