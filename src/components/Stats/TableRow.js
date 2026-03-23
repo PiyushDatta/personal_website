@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TableRow = ({ label, link, value, format }) => (
+const TableRow = ({
+  label, link, value, format,
+}) => (
   <tr>
     <td width="70%">{label}</td>
     <td>{link ? <a href={link}>{format(value)}</a> : format(value)}</td>
