@@ -11,8 +11,7 @@ const sortedBlogPosts = [...blogPosts].sort(
   (left, right) => new Date(right.date) - new Date(left.date),
 );
 
-const getBlogPostBySlug = (slug) =>
-  sortedBlogPosts.find((post) => post.slug === slug);
+const getBlogPostBySlug = (slug) => sortedBlogPosts.find((post) => post.slug === slug);
 
 export { getBlogPostBySlug };
 export default sortedBlogPosts;

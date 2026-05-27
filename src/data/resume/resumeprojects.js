@@ -7,8 +7,8 @@ const resumeProjects = [
     link: 'https://devpost.com/software/doorwai',
     tech: 'Python, React Native, Node/Express, Google Cloud',
     points: [
-      'Created a fully functional cross-platform app that acts as an AI assistant for youth facing homelessness.',
-      'Enabled users to chat with the AI assistant via text or speech; the assistant could also place phone calls to agencies on the user’s behalf without using the user’s phone number.',
+      'Created a fully functional cross-platform app that serves as an AI assistant for youth facing homelessness.',
+      'Enabled users to chat with the assistant via text or speech and place phone calls to agencies without exposing the user’s phone number.',
     ],
   },
   {
@@ -17,7 +17,7 @@ const resumeProjects = [
     tech: 'Python, PyTorch, TensorBoard',
     points: [
       'Trained a 3M-parameter vision-LLM agent from scratch using 8xH100s, FlashAttention, FSDP, GELU, and AMP.',
-      'Won Novice Champion by having my LLM agent defeat other LLM agents in 1-on-1 chess matches (100-move max).',
+      'Won Novice Champion after my LLM agent defeated other LLM agents in one-on-one chess matches with a 100-move limit.',
     ],
   },
   {
@@ -25,7 +25,7 @@ const resumeProjects = [
     link: '',
     tech: '',
     points: [
-      'Lead designer and inventor of a database configuration system that automatically predicts optimal database configurations based on customer workloads using AI reinforcement learning techniques.',
+      'Lead designer and inventor of a database configuration system that uses reinforcement learning to predict optimal configurations based on customer workloads.',
     ],
   },
   {
@@ -33,7 +33,7 @@ const resumeProjects = [
     link: 'https://www.tensorflow.org',
     tech: 'C/C++, Python',
     points: [
-      'Contributed to an open-source project enabling developers to create and train ML models.',
+      'Contributed C++/Python changes to TensorFlow runtime/model-training infrastructure.',
     ],
   },
 ];

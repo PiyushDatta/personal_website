@@ -23,8 +23,9 @@ const work = [
     startDate: '2025',
     location: 'San Francisco Bay Area, CA',
     highlights: [
-      'Core engineer on Meta Ads Infrastructure, developing low‑latency C/C++ services powering global ad delivery.',
+      'Recruited from Ads Infrastructure to a high-priority AI team after delivering high-impact ML infrastructure work.',
       'Designed large-scale ML calibration systems that increased revenue by ~$10M/year and reduced fleet CPU usage by 2–3% across services handling millions of RPS.',
+      'Built infrastructure for a generalized ad-ranking model that improved ad value by 1–2% per ranked ad.',
     ],
   },
   {
@@ -35,7 +36,7 @@ const work = [
     endDate: '2025',
     location: 'San Francisco Bay Area, CA',
     highlights: [
-      'Database kernel (MySQL/Postgres) engineer on the AWS Aurora Database Engine team using C/C++.',
+      'Database kernel (MySQL/PostgreSQL) engineer on the AWS Aurora Database Engine team using C/C++.',
       'Core engineer on the new Aurora Limitless product, presented at 2024 re:Invent (https://aws.amazon.com/about-aws/whats-new/2023/11/amazon-aurora-limitless-database/).',
       'Led initiatives to create a sharded distributed storage engine capable of handling more than 1M TPS.',
     ],
@@ -48,8 +49,7 @@ const work = [
     endDate: '2020',
     location: 'Toronto, ON',
     highlights: [
-      'Backend development using Python, JavaScript, C/C++, PostgreSQL, and Unix.',
-      'Implemented gift card, point-of-sale, and other transaction-based solutions for Fortune 500 companies.',
+      'Implemented POS and transaction-based solutions using Python, JavaScript, C/C++, PostgreSQL, and Unix.',
     ],
   },
 ];
